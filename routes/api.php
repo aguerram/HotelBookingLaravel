@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->group(function(){
+    Route::post("/hotel/vote/{hotel}","ReviewController@vote");
 });
 
 Route::get("/hotel","HotelController@all");
 Route::get("/hotel/{hotel}","HotelController@show");
+Route::get("/hotel/search/{search}","HotelController@search");
+
+
+Route::post("/login","AuthController@login");
+Route::post("/signup","AuthController@signup");
