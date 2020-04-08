@@ -14,15 +14,29 @@ class HotelController extends Controller
     }
     public function show(Hotel $hotel)
     {
-        return $hotel->withCount("totalVotes")->get();
+        return $hotel->where("id",$hotel->id)->withCount("totalVotes")->first();
     }
     public function search(Request $request,$search)
     {
         $minPrice =  $request->get("minPrice");
         $minStars =  $request->get("minStars");
         $maxPrice =  $request->get("maxPrice");
-        return Hotel::where("address","like","%".$search."%")
-        ->where("price",">=",$minPrice)->get();
+
+        $searchArray = [];
+        array_push($searchArray,["address","like","%".$search."%"]);
+        if(isset($minPrice))
+        {
+            array_push($searchArray,["price",">=",$minPrice]);
+        }
+        if(isset($minStars))
+        {
+            array_push($searchArray,["stars",">=",$minStars]);
+        }
+        if(isset($maxPrice))
+        {
+            array_push($searchArray,["price","<=",$maxPrice]);
+        }
+        return Hotel::where($searchArray)->get();
     }
 
 }

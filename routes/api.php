@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->group(function(){
     Route::post("/hotel/vote/{hotel}","ReviewController@vote");
+
+    Route::get("/profile","ClientController@profile");
+    Route::post("/reservation/{hotel}","ReservationController@reservation");
 });
 
 Route::get("/hotel","HotelController@all");
