@@ -10,7 +10,7 @@ class HotelController extends Controller
 {
     public function all()
     {
-        return Hotel::all();
+        return Hotel::all()->makeHidden("description");
     }
     public function show(Hotel $hotel)
     {
