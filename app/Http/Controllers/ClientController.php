@@ -9,7 +9,6 @@ class ClientController extends Controller
 {
     public function profile()
     {
-        $client = Client::find(auth()->user()->id);
-        return $client->with(["reservations","reviews"])->first();
+        return Client::where("id",auth()->user()->id)->with(["reservations.hotel:id,title","reviews.hotel:id,title"])->first();
     }
 }

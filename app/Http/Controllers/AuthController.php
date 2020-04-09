@@ -23,7 +23,7 @@ class AuthController extends Controller
         $token = Str::random(60);
         $client->api_token = $token;
         $client->save();
-        return response()->json(["message"=>$token],401);;
+        return response()->json(["message"=>$token],200);;
     }
     public function signup(Request $request)
     {
