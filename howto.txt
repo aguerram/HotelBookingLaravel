@@ -1,0 +1,2 @@
+username and password and db : hotel_booking_ub
+https://www.db4free.net/phpMyAdmin
