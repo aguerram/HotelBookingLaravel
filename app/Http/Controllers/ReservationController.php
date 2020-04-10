@@ -24,6 +24,7 @@ class ReservationController extends Controller
             "guests" => $request->for,
             "from" => $request->from,
             "to" => $request->to,
+            "rooms"=>$request->rooms
         ]);
 
         return response()->json([

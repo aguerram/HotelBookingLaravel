@@ -28,7 +28,7 @@ class ReviewController extends Controller
         if ($hotel->stars == null) {
             $hotel->stars = $request->stars;
         } else {
-            $hotel->stars = $hotel->stars + ($request->stars / $totalVotes);
+            $hotel->stars = (($hotel->stars*$totalVotes)+$request->stars)/($totalVotes+1);
         }
         $hotel->save();
         return response()->json(["message" => "Vous avez voté avec succès"], 200);
